@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import './Header.css'
 import { Link } from 'react-router-dom';
+import { UserContaxt } from '../../App';
 
 const Header = () => {
+    const [userDetails, ] = useContext(UserContaxt);
+    // console.log(userDetails);
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -11,7 +15,7 @@ const Header = () => {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarText">
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center">
                             <li className="nav-item mx-5">
                                 <Link style={{ fontWeight: 'bolder' }} className="nav-link active" aria-current="page" to="/home">Home</Link>
                             </li>
@@ -24,8 +28,14 @@ const Header = () => {
                             <li className="nav-item mx-5">
                                 <Link style={{ fontWeight: 'bolder' }} className="nav-link active" to="/deals">Deals</Link>
                             </li>
-                            <li className="nav-item mx-5">
-                                <Link style={{ fontWeight: 'bolder' }} className="nav-link active" to="/login">Login</Link>
+                          
+                           <li className="nav-item mx-5">
+                                <Link style={{ fontWeight: 'bolder' }} className="nav-link active login" to="/login">
+                                    
+                                    {
+                                      userDetails.email ?  <img src={userDetails.photoURL} alt="" />  : 'login'  
+                                    }
+                                </Link>
                             </li>
                         </ul>
                         <span className="navbar-text">

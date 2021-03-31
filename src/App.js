@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext, useState } from "react";
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -11,32 +11,38 @@ import Login from "./components/Login/Login";
 
 
 
-
+export const UserContaxt = createContext();
 
 function App() {
+
+  const [userDetails, setUserDetails] = useState({})
+  // console.log(userDetails);
   return (
     <div className="App">
-      <Router>
-        <Header />
-        <Switch>
-          <Route path="/about">
+      <h3>Email: {userDetails.email}</h3>
+      <UserContaxt.Provider value={[userDetails, setUserDetails]}>
+        <Router>
+          <Header />
+          <Switch>
+            <Route path="/about">
 
-          </Route>
-          <Route path="/users">
+            </Route>
+            <Route path="/users">
 
-          </Route>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/home">
-            <Home />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-        </Switch>
+            </Route>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/home">
+              <Home />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+          </Switch>
 
-      </Router>
+        </Router>
+      </UserContaxt.Provider>
     </div>
   );
 }
