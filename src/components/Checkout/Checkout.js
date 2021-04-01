@@ -4,37 +4,37 @@ import { UserContaxt } from '../../App';
 import './Checkout.css'
 
 const Checkout = () => {
-    const {order, userDetails } = useContext(UserContaxt);
-  
- console.log(order);
+    const { order, userDetails } = useContext(UserContaxt);
+
+    console.log(order);
     const history = useHistory();
-    const confirmeOrder =  orderDetails => { 
+    const confirmeOrder = orderDetails => {
         const details = {
             userName: userDetails.displayName,
             email: userDetails.email,
             productName: orderDetails.name,
             price: orderDetails.price,
             weight: orderDetails.weignt,
-           date: new Date()
+            date: (new Date().toDateString("dddd, mmmm, yyyy"))
         }
         console.log(details);
-        fetch('http://localhost:4000/orderDetails', {
+        fetch('https://banana-pie-39331.herokuapp.com/orderDetails', {
             method: 'POST',
-            headers: {  
+            headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(details)
         })
 
-        if(order.price){
-         alert("YOUR ORDER IS CONFIRMED !! your total bill: " + order.price)
-         history.push('/orders')
-        }   
-        else{
+        if (order.price) {
+            alert("YOUR ORDER IS CONFIRMED !! your total bill: " + order.price)
+            history.push('/orders')
+        }
+        else {
             alert("please again order then checkout")
             history.push('/home')
         }
-        
+
     }
 
     return (
@@ -54,22 +54,14 @@ const Checkout = () => {
                     </div>
                     <hr />
                     <div className="d-flex justify-content-end">
-                        <button onClick={() => confirmeOrder(order)} className="btn btn-success">Order Confirmed</button>
+                        <button onClick={() => confirmeOrder(order)} className="btn btn-success">Confirme Order</button>
                     </div>
                 </div>
             </div>
             <div className="col-md-3">
 
             </div>
-            {/* 
-            {_id: "60653f496ddcf514bc397bc6", name: "Rashid Minicate Rice", imageURL: "https://i.ibb.co/VtRhyJ9/image35.png", price: "$124", weight: "50 KG"}
-imageURL: "https://i.ibb.co/VtRhyJ9/image35.png"
-name: "Rashid Minicate Rice"
-price: "$124"
-weight: "50 KG"
-_id: "60653f496ddcf514bc397bc6"
-__proto__: Object
-            */}
+
         </div>
     );
 };

@@ -7,14 +7,13 @@ const AddProduct = () => {
     const { register, handleSubmit, errors } = useForm();
     const [imageURL, setImageURL] = useState(null);
     const onSubmit = data => {
-        console.log(data);
         const productData = {
             name: data.name,
             imageURL: imageURL,
             price: data.price,
             weight: data.weight
         }
-        const url = `http://localhost:4000/addProduct`;
+        const url = `https://banana-pie-39331.herokuapp.com/addProduct`;
         fetch(url, {
             method: 'POST',
             headers: {
@@ -24,11 +23,9 @@ const AddProduct = () => {
         })
         .then(res => 
             console.log("server site response", res))
-        console.log(productData);
     };
 
     const handleImageUpload = event => {
-        console.log(event.target.files[0]);
         const imageData = new FormData();
         imageData.set('key', 'e1f5a6095b7d9d00411e4c204ddebf7f')
         imageData.append('image', event.target.files[0]);

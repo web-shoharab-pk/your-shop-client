@@ -1,11 +1,9 @@
 import React from 'react';
 
 const DeleteProduct = ({ product }) => {
-    console.log(product);
 
     const deleteProduct = id => {
-        console.log(id)
-        fetch(`http://localhost:4000/deleteProduct/${id}`, {
+        fetch(`https://banana-pie-39331.herokuapp.com/deleteProduct/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

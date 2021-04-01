@@ -1,4 +1,4 @@
-import React, {  useContext  }  from 'react';
+import React, {  useContext }  from 'react';
 import { useHistory } from 'react-router';
 import { UserContaxt } from '../../App'; 
  
@@ -11,7 +11,8 @@ const Products = ({ product }) => {
  
     const handleBuynowBtn =   id  => {   
        
-            fetch(`http://localhost:4000/product/${id}`)
+       
+            fetch(`https://banana-pie-39331.herokuapp.com/product/${id}`)
             .then(res => res.json())
             .then(data => {
                 setOrder(data[0]);  

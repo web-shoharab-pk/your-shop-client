@@ -5,7 +5,7 @@ import { UserContaxt } from '../../App';
 
 const Header = () => {
     const {userDetails  } = useContext(UserContaxt);
-    // console.log(userDetails);
+   
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
