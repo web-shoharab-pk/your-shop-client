@@ -11,6 +11,7 @@ import Login from "./components/Login/Login";
 import Admin from "./components/Admin/Admin";
 import ManageProduct from "./components/ManageProduct/ManageProduct";
 import AddProduct from "./components/AddProduct/AddProduct";
+import Checkout from "./components/Checkout/Checkout";
 
 
 
@@ -19,11 +20,9 @@ export const UserContaxt = createContext();
 function App() {
 
   const [userDetails, setUserDetails] = useState({})
-  // console.log(userDetails);
+  const [ order, setOrder] = useState()
   return (
-    <div>
-      <h3>Email: {userDetails.email}</h3>
-      <UserContaxt.Provider value={[userDetails, setUserDetails]}>
+      <UserContaxt.Provider value={[userDetails, setUserDetails,  order, setOrder]}>
         <Router>
           <Header />
           <Switch>
@@ -52,11 +51,16 @@ function App() {
             <Route path="/addProduct">
               <AddProduct />             
             </Route>
+            <Route path="/checkout">
+               <Checkout />             
+            </Route>
+            <Route path="/orders">
+               <Checkout />             
+            </Route>
           </Switch>
 
         </Router>
       </UserContaxt.Provider>
-    </div>
   );
 }
 

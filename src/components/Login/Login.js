@@ -67,10 +67,8 @@ const Login = () => {
                         </div>
                         <button style={{ width: '100%' }} type="submit" className="btn btn-primary">LOGIN</button>
                     </form>
-
                     <br />
-
-                    <h4>Or</h4>
+                  <hr></hr>
 
                     <div className="px-5 py-3">
                         <div className="loginWithFacebook">
