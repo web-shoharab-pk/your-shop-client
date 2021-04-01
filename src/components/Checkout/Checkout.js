@@ -4,15 +4,34 @@ import { UserContaxt } from '../../App';
 import './Checkout.css'
 
 const Checkout = () => {
-    const [order] = useContext(UserContaxt);
+    const {order, userDetails } = useContext(UserContaxt);
+  
+ console.log(order);
     const history = useHistory();
-    const confirmeOrder = () => {  
+    const confirmeOrder =  orderDetails => { 
+        const details = {
+            userName: userDetails.displayName,
+            email: userDetails.email,
+            productName: orderDetails.name,
+            price: orderDetails.price,
+            weight: orderDetails.weignt,
+           date: new Date()
+        }
+        console.log(details);
+        fetch('http://localhost:4000/orderDetails', {
+            method: 'POST',
+            headers: {  
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(details)
+        })
+
         if(order.price){
          alert("YOUR ORDER IS CONFIRMED !! your total bill: " + order.price)
-         history.push('/home')
+         history.push('/orders')
         }   
         else{
-            alert("please order again then checkout")
+            alert("please again order then checkout")
             history.push('/home')
         }
         
@@ -35,7 +54,7 @@ const Checkout = () => {
                     </div>
                     <hr />
                     <div className="d-flex justify-content-end">
-                        <button onClick={confirmeOrder} className="btn btn-success">Order Confirmed</button>
+                        <button onClick={() => confirmeOrder(order)} className="btn btn-success">Order Confirmed</button>
                     </div>
                 </div>
             </div>

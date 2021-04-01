@@ -32,7 +32,7 @@ const ManageProduct = () => {
                     </div>
                     <div>
                         {
-                            products.map(product => <DeleteProduct product={product} />)
+                            products.map(product => <DeleteProduct key={product._id} product={product} />)
                         }
                     </div>
                 </div>

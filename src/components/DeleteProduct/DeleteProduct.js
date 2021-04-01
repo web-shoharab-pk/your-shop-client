@@ -10,11 +10,7 @@ const DeleteProduct = ({ product }) => {
         })
             .then(res => res.json())
             .then(result => {
-                console.log("deleted successfully");
-                document.getElementById('productDetails').style.display = 'none';
-                // if (result) {
-                //     document.getElementById('productDetails').style.display = 'none';
-                // }
+                console.log("deleted successfully", result);
             })
     }
 

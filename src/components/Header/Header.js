@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { UserContaxt } from '../../App';
 
 const Header = () => {
-    const [userDetails, ] = useContext(UserContaxt);
+    const {userDetails  } = useContext(UserContaxt);
     // console.log(userDetails);
     return (
         <div>
@@ -33,7 +33,7 @@ const Header = () => {
                                 <Link style={{ fontWeight: 'bolder' }} className="nav-link active login" to="/login">
                                     
                                     {
-                                      userDetails.email ?  <img src={userDetails.photoURL} alt="" />  : 'login'  
+                                      userDetails.email ?  <img src={userDetails.photoURL} alt="" /> || 'logout' : 'login'  
                                     }
                                 </Link>
                             </li>

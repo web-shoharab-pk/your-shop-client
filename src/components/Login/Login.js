@@ -9,6 +9,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import { UserContaxt } from '../../App';
+import { useHistory, useLocation } from 'react-router';
 // Add the Firebase products that you want to use
 
 if (!firebase.apps.length) {
@@ -17,13 +18,16 @@ if (!firebase.apps.length) {
     firebase.app(); // if already initialized, use that one
  }
 
+
+
  
 const Login = () => {
-    const [userDetails, setUserDetails] = useContext(UserContaxt);
+    const {userDetails, setUserDetails} = useContext(UserContaxt);
+    const history = useHistory();
+    const location = useLocation();
+    let { from } = location.state || { from: { pathname: "/" } };
  
  
-   
-    console.log(userDetails);
     const handleGoogleLogin = () => {
         const googleProvider = new firebase.auth.GoogleAuthProvider();
         
@@ -34,6 +38,9 @@ const Login = () => {
                 /** @type {firebase.auth.OAuthCredential} */
                   const user = result.user;
                   setUserDetails(user)
+                  if(userDetails){
+                    history.replace(from);
+                }
                 // ...
             }).catch((error) => {
                 // Handle Errors here.

@@ -12,6 +12,8 @@ import Admin from "./components/Admin/Admin";
 import ManageProduct from "./components/ManageProduct/ManageProduct";
 import AddProduct from "./components/AddProduct/AddProduct";
 import Checkout from "./components/Checkout/Checkout";
+import PrivateRouter from "./components/PrivateRouter/PrivateRouter";
+import Orders from "./components/Orders/Orders";
 
 
 
@@ -20,47 +22,52 @@ export const UserContaxt = createContext();
 function App() {
 
   const [userDetails, setUserDetails] = useState({})
-  const [ order, setOrder] = useState()
+  const [order, setOrder] = useState()
   return (
-      <UserContaxt.Provider value={[userDetails, setUserDetails,  order, setOrder]}>
-        <Router>
-          <Header />
-          <Switch>
-            <Route path="/about">
+    <UserContaxt.Provider value={{
+      userDetails: userDetails,
+      setUserDetails: setUserDetails,
+      order: order,
+      setOrder: setOrder
+    }}>
 
-            </Route>
-            <Route path="/users">
+      <Router>
+        <Header />
+        <Switch>
+          <Route path="/about">
 
-            </Route>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/home">
-              <Home />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/admin">
-              <Admin />
+          </Route>
+          <Route path="/users">
 
-            </Route>
-            <Route path="/manageProduct">
-               <ManageProduct />             
-            </Route>
-            <Route path="/addProduct">
-              <AddProduct />             
-            </Route>
-            <Route path="/checkout">
-               <Checkout />             
-            </Route>
-            <Route path="/orders">
-               <Checkout />             
-            </Route>
-          </Switch>
+          </Route>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/home">
+            <Home />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <PrivateRouter path="/admin">
+            <Admin />
+          </PrivateRouter>
+          <Route path="/manageProduct">
+            <ManageProduct />
+          </Route>
+          <Route path="/addProduct">
+            <AddProduct />
+          </Route>
+          <PrivateRouter path="/checkout">
+            <Checkout />
+          </PrivateRouter>
+          <PrivateRouter path="/orders">
+             <Orders />
+          </PrivateRouter>
+        </Switch>
+      </Router>
 
-        </Router>
-      </UserContaxt.Provider>
+    </UserContaxt.Provider>
   );
 }
 
