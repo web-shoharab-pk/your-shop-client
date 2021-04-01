@@ -8,6 +8,9 @@ import {
 import Home from "./components/Home/Home";
 import Header from "./components/Header/Header";
 import Login from "./components/Login/Login";
+import Admin from "./components/Admin/Admin";
+import ManageProduct from "./components/ManageProduct/ManageProduct";
+import AddProduct from "./components/AddProduct/AddProduct";
 
 
 
@@ -18,7 +21,7 @@ function App() {
   const [userDetails, setUserDetails] = useState({})
   // console.log(userDetails);
   return (
-    <div className="App">
+    <div>
       <h3>Email: {userDetails.email}</h3>
       <UserContaxt.Provider value={[userDetails, setUserDetails]}>
         <Router>
@@ -38,6 +41,16 @@ function App() {
             </Route>
             <Route path="/login">
               <Login />
+            </Route>
+            <Route path="/admin">
+              <Admin />
+
+            </Route>
+            <Route path="/manageProduct">
+               <ManageProduct />             
+            </Route>
+            <Route path="/addProduct">
+              <AddProduct />             
             </Route>
           </Switch>
 
