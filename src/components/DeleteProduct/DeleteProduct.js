@@ -11,10 +11,10 @@ const DeleteProduct = ({ product }) => {
                 console.log("deleted successfully", result);
             })
     }
-
+ 
     return (
-        <div id="productDetails">
-            <div style={{ backgroundColor: 'white' }} className="d-flex justify-content-between p-3">
+        <div>
+            <div  style={{ backgroundColor: 'white' }} className="d-flex justify-content-between p-3">
                 <p>{product.name}</p>
                 <p>{product.weight}</p>
                 <p>{product.price}</p>
@@ -24,5 +24,6 @@ const DeleteProduct = ({ product }) => {
 
     );
 };
+
 
 export default DeleteProduct;
