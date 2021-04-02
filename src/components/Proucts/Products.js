@@ -1,6 +1,7 @@
 import React, {  useContext }  from 'react';
 import { useHistory } from 'react-router';
 import { UserContaxt } from '../../App'; 
+import './Products.css'
  
 
 const Products = ({ product }) => {
